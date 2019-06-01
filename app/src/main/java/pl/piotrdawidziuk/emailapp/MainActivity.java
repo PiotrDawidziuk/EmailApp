@@ -15,5 +15,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editTextTo = findViewById(R.id.edit_text_to);
+        editTextSubject = findViewById(R.id.edit_text_subject);
+        editTextMessage = findViewById(R.id.edit_text_message);
+
+        
     }
 }
