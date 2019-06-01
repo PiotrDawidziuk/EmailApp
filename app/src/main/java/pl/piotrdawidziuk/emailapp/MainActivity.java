@@ -1,5 +1,6 @@
 package pl.piotrdawidziuk.emailapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +27,25 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                sendMail();
             }
         });
+    }
+
+    private void sendMail() {
+        String recipientList = editTextTo.getText().toString();
+        String[] recipients = recipientList.split(",");
+
+        String subject = editTextSubject.getText().toString();
+        String message = editTextMessage.getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL,recipients);
+        intent.putExtra(Intent.EXTRA_SUBJECT,subject);
+        intent.putExtra(Intent.EXTRA_TEXT,message);
+
+        intent.setType("message/rfc822");
+
+        startActivity(Intent.createChooser(intent,"Choose an email client"));
     }
 }
